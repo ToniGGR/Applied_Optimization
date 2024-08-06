@@ -19,7 +19,6 @@ def test():
     best_x = [0,0,0,0,0,0]
     max_predict = 0
     for i in range(50):
-        
         i = np.random.uniform([1,2,0.3,0.5,0.5,0.1] , [1.5,3,0.5,0.8,0.7,0.3])
         try:
             res = cobyla_perform(initial_guess= i)
