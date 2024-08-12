@@ -97,6 +97,8 @@ def compare_Efficiency (testruns=10):
     ax.set_xlabel("Algorithms")
     ax.set_ylabel("Max Efficiency")
     ax.set_title(f"Algorithms by Iteration with Start Array {x_test} ")
+    for bars in ax.containers:
+        ax.bar_label(bars)
     plt.show()
 
 
