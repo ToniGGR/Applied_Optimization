@@ -8,7 +8,7 @@ import time
 def objective (x, penalty=0.05):
     if constraint(x) > 1000:
         weight = constraint(x) - 1000
-        return fun_cyclone(x, model="Barth-Muschelknautz")[:2][1] *  - (penalty * 0.001 * weight)
+        return fun_cyclone(x, model="Barth-Muschelknautz")[:2][1] + (penalty * 0.01 * weight)
     return fun_cyclone(x, model="Barth-Muschelknautz")[:2][1]
 
 def constraint (x):

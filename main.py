@@ -33,7 +33,7 @@ def test():
 
 def compare():
     nedermead_perform()
-    print(f"\n#########################################################\n")
+    print("'\n' + '# *80' + '\n'")
     test_rs()
 
 
