@@ -1,41 +1,98 @@
 from cyclone import calculation_barth_muschelknautz
+from cyclone import fun_cyclone
 import numpy as np
 from neldermead import nedermead_perform
-from randomSearch import test_rs
+from randomSearch import test_rs , random_search
 from cobyla import *
+from pyfiglet import Figlet
+from neldermead import nedermead_perform
+from cobyla import cobyla_perform, cobyqa_perform, slsqp_perform
+from direct import direct_perform
+from cma_es import cma_execute
+from benchmark import *
 
 def main():
-    cyclone = {'Da': 2.0, 'Dt': 1.0, 'H': 5.0, 'Ht': 3.0, 'He': 1.0, 'Be': 0.5}
-    fluid = {'Vp': 1.2, 'Croh': 0.05, 'Rhof': 1, 'Rhop': 1.2, 'Mu': 0.01, 'lambdag': 0.02}
-    xmean = np.array([0.1, 0.2, 0.3, 0.4, 0.5])
-    delta = np.array([0.1, 0.2, 0.3, 0.25, 0.15])
-    efficiency, ew, pressure_drop = calculation_barth_muschelknautz(cyclone, fluid, xmean, delta)
-    print("Efficiency:", efficiency)
-    print("Ew (weighted efficiency):", ew)
-    print("Pressure Drop:", pressure_drop)
+    #Start Text
+    f = Figlet(font="slant")
+    print(f.renderText("Welcome to Applied Optimization"))
+    stop = False
 
+    #Input Loop
+    while not stop:
 
-def test():
-    best_x = [0,0,0,0,0,0]
-    max_predict = 0
-    for i in range(50):
-        i = np.random.uniform([1,2,0.3,0.5,0.5,0.1] , [1.5,3,0.5,0.8,0.7,0.3])
-        try:
-            res = cobyla_perform(initial_guess= i)
-            if max_predict > res["E"] and res["PL"] < 1000:
-                max_predict = res["E"]
-                best_x = res["X"]
-                best_P = res["PL"]
-        except:
-            continue
+        print("\n\n\nPress 1 for Handing Over your own Trial \n" +
+            "Press 2 for Starting Algorithm \n" +
+            "Press 3 for Starting Benchmarking \n" +
+            "Press q to quit the program \n")
 
-    print(max_predict , best_x , best_P)
+        action = input()
 
-def compare():
-    nedermead_perform()
-    print("'\n' + '# *80' + '\n'")
-    test_rs()
+        # Check User Input
+        match action:
+            case "1":
+                input_x = [0] * 6
+                for _ in range(len(input_x)):
+                    input_x[_] = float(input(f"Whats x{_} ?"))
+                try:
+                    print(fun_cyclone(input_x))
+                except TypeError:
+                    print("Input was not valid")
+                finally:
+                    continue
 
+            case "2":
+                print("Which Algorithm do you want to perform?" + 
+                      "\t Press RS for Start Random Search \n" +
+                       "\t Press NM for Start Nelder Mead \n" +
+                        "\t Press CL for Start COBYLA \n" + 
+                        "\t Press CQ for Start COBYQA \n" + 
+                        "\t Press SL for Start SLSQP \n" + 
+                        "\t Press DI for Start DIRECT \n" + 
+                        "\t Press CM for Start CMA_ES \n")
+                alg_choice = input("Input : ")
 
+                match alg_choice:
+                    case "RS":
+                        print(random_search())
+                    case "NM":
+                        print(nedermead_perform())
+                    case "CL":
+                        print(cobyla_perform())
+                    case "CQ":
+                        print(cobyqa_perform())
+                    case "SL":
+                        print(slsqp_perform())
+                    case "DI":
+                        print(direct_perform())
+                    case "CM":
+                        print(cma_execute())
+
+            #Benchmark
+            case "3":
+                print("Which Benchmark do you want to start? \n" +
+                      "1: Amount Cyclone Functions \n" + 
+                       "2: Execution Time \n" +
+                        "3: Validity \n" +
+                         "4: Performance \n" +
+                          "5: Loss Functions" )
+                bm_input = input("Input: ")
+
+                match bm_input:
+                    case "1":
+                        compare_iterations()
+                    case "2":
+                        compare_execution_time()
+                    case "3":
+                        compare_Validiy()
+                    case "4":
+                        compare_scatter()
+                    case "5":
+                        compare_progress()
+
+            # Stop Program
+            case "q":
+                stop = True
+
+# Main Function
 if __name__ == "__main__":
-    test()
+    main()

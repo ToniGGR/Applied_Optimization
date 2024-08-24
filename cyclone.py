@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import latexify
 
 def calculation_mothes(x, cyclone, fluid):
     ra = cyclone['Da'] / 2
@@ -174,7 +175,6 @@ def calculation_barth_muschelknautz(cyclone, fluid, xmean, delta):
 #print("Ew (weighted efficiency):", ew)
 #print("Pressure Drop:", pressure_drop)
 
-
 def fun_cyclone(x, deterministic=[True, True, True],
                 cyclone={'Da': 1.26, 'H': 2.5, 'Dt': 0.42, 'Ht': 0.65, 'He': 0.6, 'Be': 0.2},
                 fluid={'Mu': 1.85e-5, 'Ve': (50/36)/0.12, 'lambdag': 1/200, 'Rhop': 2000, 'Rhof': 1.2, 'Croh': 0.05},
@@ -212,7 +212,7 @@ def fun_cyclone(x, deterministic=[True, True, True],
     return [PressureDrop, -E, -Ew]
 
 # Example usage
-#example_result = fun_cyclone(np.array([1.58518429, 3.0,         0.3,        0.50987174, 0.26516775, 0.1       ]),
+#example_result = fun_cyclone(np.array([1.5, 3.0,         0.3,        0.5, 0.5, 0.1       ]),
 #                             fluid={'Mu': 1.85e-5, 'Ve': (50/36)/0.12, 'lambdag': 1/200, 'Rhop': 2000, 'Rhof': 1.2, 'Croh': 0.05})
 #example_result = fun_cyclone(np.array([1.26, 2.5, 0.42, 0.65, 0.6, 0.2]),
 #                             fluid={'Mu': 1.85e-5, 'Ve': (50/36)/0.12, 'lambdag': 1/200, 'Rhop': 2000, 'Rhof': 1.2, 'Croh': 0.05}, 
@@ -225,3 +225,5 @@ def fun_cyclone(x, deterministic=[True, True, True],
 #Good Results:
 
 #[1.3760064390596898, 2.9999999999939626, 0.3517084091228143, 0.5000000000013354, 0.5000000000004706, 0.10000000000031344]  --> 98,74
+
+#print(fun_cyclone)

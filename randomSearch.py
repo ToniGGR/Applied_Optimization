@@ -35,13 +35,16 @@ def random_search(n=6,fun=objective , lower=[1,2,0.3,0.5,0.5,0.1] ,
 
     ids = np.all(results == best_feasible, axis=1)
     
+    
     end_time = time.time()
     return {
         'E' : best_feasible[1],
         'PL' : best_feasible[0],
         'X' : x[ids] ,
         'iterations' : d["iterations"],
-        "time" : end_time - start_time
+        "time" : end_time - start_time ,
+        "progress_list" : feasible_results [ : ,1 ] ,
+        "pressure_list" : feasible_results [ : ,0 ]
     }
 
 def test_rs():
@@ -58,4 +61,4 @@ def test_rs():
 
     
 
-#test_rs()
+#print(list(random_search()["X"][0]))
