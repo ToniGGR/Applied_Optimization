@@ -15,7 +15,7 @@ def objective (x , penalty=0.85):
     ### WEIGHTED PENALTY
     if constraint(x) > 1000:
         weight = constraint(x) - 1000
-        return fun_cyclone(x, model="Barth-Muschelknautz")[1] *  - (penalty * 0.001 * weight )
+        return fun_cyclone(x, model="Barth-Muschelknautz")[1] + (penalty * 0.001 * weight )
     return fun_cyclone(x, model="Barth-Muschelknautz")[1]
 
 # Pressure Loss Function

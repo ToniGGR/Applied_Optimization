@@ -4,12 +4,6 @@ from scipy.optimize import minimize
 from cyclone import fun_cyclone
 
 def objective (x , penalty=0.85):
-    ### NORMAL PENALTY
-
-    #if constraint(x) > 1000:
-    #    return fun_cyclone(x, model="Barth-Muschelknautz")[:2][1] *  - (penalty)
-    #return fun_cyclone(x, model="Barth-Muschelknautz")[:2][1]
-
     ### WEIGHTED PENALTY
     if constraint(x) > 1000:
         weight = constraint(x) - 1000

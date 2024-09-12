@@ -55,7 +55,7 @@ def cobyqa_perform (fun=objective , initial_guess=np.array([1.34146605 , 2.94333
 
     cb = lambda xx : counter_obj(xx, d , efficiency_log , pressure_log)
 
-    result = minimize(objective , initial_guess , method="COBYQA" , bounds=[(1,1.5) , (2,3) , (0.3,0.5) , (0.5,0.8), (0.5,0.7) , (0.1,0.3) ], options={'maxiter': 718, 'max_fev' : 66 , 'initial_tr_radius': 0.00025993027876526067 ,'disp': True , 'solver':'minimize_scalar'}, constraints=nonlinear_constraint , callback=cb )
+    result = minimize(objective , initial_guess , method="COBYQA" , bounds=[(1,1.5) , (2,3) , (0.3,0.5) , (0.5,0.8), (0.5,0.7) , (0.1,0.3) ], options={'max_fev' : 66 , 'initial_tr_radius': 0.00025993027876526067 ,'disp': True , 'solver':'minimize_scalar'}, constraints=nonlinear_constraint , callback=cb )
      
     computedsolutionOptimizationX = result.x
 
@@ -81,7 +81,7 @@ def slsqp_perform (fun=objective , initial_guess=np.array([1.34146605 , 2.943338
 
     cb = lambda xx : counter_obj(xx, d , efficiency_log ,pressure_log)
     
-    result = minimize(objective , initial_guess , method="SLSQP" , bounds=[(1,1.5) , (2,3) , (0.3,0.5) , (0.5,0.8), (0.5,0.7),(0.1,0.3) ], options={'maxiter': 314, 'eps': 9.995619041053416e-08 } , constraints=nonlinear_constraint, callback=cb )
+    result = minimize(objective , initial_guess , method="SLSQP" , bounds=[(1,1.5) , (2,3) , (0.3,0.5) , (0.5,0.8), (0.5,0.7),(0.1,0.3) ], options={'eps': 9.995619041053416e-08 } , constraints=nonlinear_constraint, callback=cb )
      
     computedsolutionOptimizationX = result.x
 
@@ -155,8 +155,6 @@ def optuna_objective (trial) :
     # Scipy minimize-Aufruf
     result = minimize(objective , initial_guess , method="SLSQP" , bounds=[(1,1.5) , (2,3) , (0.3,0.5) , (0.5,0.8), (0.5,0.7),(0.1,0.3) ], options={'maxiter': max_iter, 'eps': eps } , constraints=nonlinear_constraint)
     return result.fun
-
-
 
 
 if __name__ == "__main__":

@@ -175,11 +175,14 @@ def compare_scatter (testruns=10):
     fig, ax = plt.subplots( 1, (len(algoritms_list)))
 
     for index in range(len(algoritms_list)) :
-        ax[index].boxplot(list_eff[index] , showmeans=True)
-        ax[index].set_xlabel("Algorithms")
-        ax[index].set_ylabel("Efficiency")
+        ax[index].boxplot(list_eff[index] , showmeans=True , )
+        ax[0].set_ylabel("Efficiency")
         ax[index].set_title(f"Algorithm {algoritms_list[index]}")
         ax[index].set_ylim([0.95 , 1])
+        ax[index].set_xticklabels([])
+        if index > 0:
+            ax[index].set_yticklabels([])
+
     plt.show()
 
 
@@ -224,7 +227,7 @@ def compare_progress () :
     plt.show()
 
 def main():
-    ...
+    compare_progress()
 
 if __name__ == "__main__" :
     main()

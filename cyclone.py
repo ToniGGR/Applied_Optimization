@@ -211,6 +211,10 @@ def fun_cyclone(x, deterministic=[True, True, True],
     # Inverting efficiency for minimization
     return [PressureDrop, -E, -Ew]
 
+def __test ():
+    print("Hello World")
+    
+
 # Example usage
 #example_result = fun_cyclone(np.array([1.5, 3.0,         0.3,        0.5, 0.5, 0.1       ]),
 #                             fluid={'Mu': 1.85e-5, 'Ve': (50/36)/0.12, 'lambdag': 1/200, 'Rhop': 2000, 'Rhof': 1.2, 'Croh': 0.05})

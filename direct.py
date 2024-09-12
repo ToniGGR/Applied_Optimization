@@ -6,13 +6,13 @@ import time
 
 # Objective with weighted Punishing 
 def objective (x , summand=0.02):
-    if fun_cyclone(x, model="Barth-Muschelknautz")[:2] > 1000:
-        return fun_cyclone(x, model="Barth-Muschelknautz")[:2] + summand
+    if fun_cyclone(x, model="Barth-Muschelknautz")[0] > 1000:
+        return fun_cyclone(x, model="Barth-Muschelknautz")[1] + summand
     else:
-        return fun_cyclone(x, model="Barth-Muschelknautz")[:2]
+        return fun_cyclone(x, model="Barth-Muschelknautz")[1]
 
 def constraint (x):
-    return fun_cyclone(x, model="Barth-Muschelknautz")[:2]
+    return fun_cyclone(x, model="Barth-Muschelknautz")[0]
 
 # Callback Counter Objective
 def counter_obj (xx, d , efficiency_log):

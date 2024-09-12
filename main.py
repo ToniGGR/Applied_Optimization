@@ -14,7 +14,7 @@ from benchmark import *
 def main():
     #Start Text
     f = Figlet(font="slant")
-    print(f.renderText("Welcome to Applied Optimization"))
+    print(f.renderText("Welcome to Applied Optimization Techniques"))
     stop = False
 
     #Input Loop
@@ -91,6 +91,7 @@ def main():
 
             # Stop Program
             case "q":
+                print(f.renderText("Stopped"))
                 stop = True
 
 # Main Function

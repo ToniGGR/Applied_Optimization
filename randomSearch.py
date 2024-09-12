@@ -2,7 +2,6 @@ from cyclone import *
 import time
 
 def objective (x):
-    #print(fun_cyclone(x, model="Barth-Muschelknautz")[:2])
     return fun_cyclone(x, model="Barth-Muschelknautz")[:2]
 
 def constraint (x):
